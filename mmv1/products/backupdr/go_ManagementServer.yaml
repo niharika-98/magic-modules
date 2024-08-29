@@ -86,7 +86,6 @@ properties:
     description: |
       Network details to create management server (management console).
     min_version: 'beta'
-    required: true
     item_type:
       type: NestedObject
       properties:
@@ -95,7 +94,6 @@ properties:
           description: |
             Network with format `projects/{{project_id}}/global/networks/{{network_id}}`
           min_version: 'beta'
-          required: true
         - name: 'peeringMode'
           type: Enum
           description: |
