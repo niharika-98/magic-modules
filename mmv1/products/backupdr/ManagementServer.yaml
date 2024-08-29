@@ -67,14 +67,12 @@ properties:
     name: 'networks'
     description: |
       Network details to create management server (management console).
-    required: true
     item_type: !ruby/object:Api::Type::NestedObject
       properties:
         - !ruby/object:Api::Type::String
           name: 'network'
           description: |
             Network with format `projects/{{project_id}}/global/networks/{{network_id}}`
-          required: true
         - !ruby/object:Api::Type::Enum
           name: 'peeringMode'
           description: |
