@@ -13,6 +13,7 @@
 
 --- !ruby/object:Api::Resource
 name: 'BackupPlanAssociation'
+# Remove this towards GA. b/371938375
 min_version: beta
 base_url: projects/{{project}}/locations/{{location}}/backupPlanAssociations
 create_url: projects/{{project}}/locations/{{location}}/backupPlanAssociations/?backup_plan_association_id={{backup_plan_association_id}}
@@ -24,7 +25,7 @@ description: A Backup and DR BackupPlanAssociation.
 references: !ruby/object:Api::Resource::ReferenceLinks
   guides:
     'Official Documentation': 'https://cloud.google.com/backup-disaster-recovery/docs'
-  api: 'https://cloud.google.com/backup-disaster-recovery/docs/deployment/deployment-plan'
+  api: 'https://cloud.google.com/backup-disaster-recovery/docs/reference/rest'
 autogen_async: true
 timeouts: !ruby/object:Api::Timeouts
   insert_minutes: 20
@@ -33,10 +34,12 @@ examples:
   - !ruby/object:Provider::Terraform::Examples
     min_version: beta
     name: 'backup_dr_backup_plan_association'
-    primary_resource_id: 'bp1'
+    primary_resource_id: 'my-backup-plan'
     vars:
+      project: 'my-project'
+      location: 'us-central1'
       backup_vault_name: 'bv1'
-      backup_plan_name: 'bp1'
+      backup_plan_name: 'my-backup-plan'
       backup_rule_name: 'rule-1'
       backup_retention_days: 5
       recurrence_type: 'HOURLY'
@@ -45,7 +48,7 @@ examples:
       start_hour_of_day: 5
       end_hour_of_day: 20
       backup_plan_association_name: 'bpa1'
-      resource_name: 'projects/gcp-project/locations/us-central1/6610822152004962810'     
+      resource_name: 'projects/gcp-project/locations/us-central1/{instance_id}'     
     test_env_vars:
       project: :PROJECT_NAME
     skip_test: true
@@ -131,5 +134,5 @@ properties:
               description: A developer-facing error message, which should be in English.
   - !ruby/object:Api::Type::String
     name: 'lastSuccessfulBackupConsistencyTime'
-    description: The point in time when the last successful backup was captured from the spurce
+    description: The point in time when the last successful backup was captured from the source
     output: true
