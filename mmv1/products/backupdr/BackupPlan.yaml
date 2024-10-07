@@ -122,7 +122,7 @@ properties:
             - !ruby/object:Api::Type::Enum
               name: 'recurrenceType'
               description: RecurrenceType enumerates the applicable periodicity for the schedule.
-              values:
+              enum_values:
                 - :HOURLY
                 - :DAILY
                 - :WEEKLY
@@ -140,7 +140,7 @@ properties:
               item_type: !ruby/object:Api::Type::Enum
                 name: 'DayOfWeekEnum'
                 description: 'Specifies day of week'
-                values:
+                enum_values:
                   - :DAY_OF_WEEK_UNSPECIFIED
                   - :MONDAY
                   - :TUESDAY
@@ -159,7 +159,7 @@ properties:
                 - !ruby/object:Api::Type::Enum
                   name: 'weekOfMonth'
                   description: 'WeekOfMonth enumerates possible weeks in the month, e.g. the first, third, or last week of the month.'
-                  values:
+                  enum_values:
                     - :WEEK_OF_MONTH_UNSPECIFIED
                     - :FIRST
                     - :SECOND
@@ -170,7 +170,7 @@ properties:
                 - !ruby/object:Api::Type::Enum
                   name: 'dayOfWeek'
                   description: 'Specifies the day of the week.'
-                  values:
+                  enum_values:
                     - :DAY_OF_WEEK_UNSPECIFIED
                     - :MONDAY
                     - :TUESDAY
@@ -186,7 +186,7 @@ properties:
               item_type: !ruby/object:Api::Type::Enum
                 name: 'monthvalues'
                 description: 'Specifies the months of the year, like `FEBRUARY` and/or `MAY`, on which jobs will run.'
-                values:
+                enum_values:
                   - :MONTH_UNSPECIFIED
                   - :JANUARY
                   - :FEBRUARY

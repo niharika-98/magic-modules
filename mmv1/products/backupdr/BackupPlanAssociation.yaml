@@ -114,7 +114,7 @@ properties:
         - !ruby/object:Api::Type::Enum
           name: 'lastBackupState'
           description: State of last backup taken.
-          values:
+          enum_values:
             - :LAST_BACKUP_STATE_UNSPECIFIED
             - :FIRST_BACKUP_PENDING
             - :PERMISSION_DENIED
