@@ -1,0 +1,135 @@
+# Copyright 2023 Google Inc.
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+--- !ruby/object:Api::Resource
+name: 'BackupPlanAssociation'
+min_version: beta
+base_url: projects/{{project}}/locations/{{location}}/backupPlanAssociations
+create_url: projects/{{project}}/locations/{{location}}/backupPlanAssociations/?backup_plan_association_id={{backup_plan_association_id}}
+self_link: projects/{{project}}/locations/{{location}}/backupPlanAssociations/{{backup_plan_association_id}}
+create_verb: :POST
+immutable: true
+delete_url: projects/{{project}}/locations/{{location}}/backupPlanAssociations/{{backup_plan_association_id}}
+description: A Backup and DR BackupPlanAssociation.
+references: !ruby/object:Api::Resource::ReferenceLinks
+  guides:
+    'Official Documentation': 'https://cloud.google.com/backup-disaster-recovery/docs'
+  api: 'https://cloud.google.com/backup-disaster-recovery/docs/deployment/deployment-plan'
+autogen_async: true
+timeouts: !ruby/object:Api::Timeouts
+  insert_minutes: 20
+  delete_minutes: 20
+examples:
+  - !ruby/object:Provider::Terraform::Examples
+    min_version: beta
+    name: 'backup_dr_backup_plan_association'
+    primary_resource_id: 'bp1'
+    vars:
+      backup_vault_name: 'bv1'
+      backup_plan_name: 'bp1'
+      backup_rule_name: 'rule-1'
+      backup_retention_days: 5
+      recurrence_type: 'HOURLY'
+      hourly_frequency: 6
+      time_zone: "UTC"
+      start_hour_of_day: 5
+      end_hour_of_day: 20
+      backup_plan_association_name: 'bpa1'
+      resource_name: 'projects/gcp-project/locations/us-central1/6610822152004962810'     
+    test_env_vars:
+      project: :PROJECT_NAME
+    skip_test: true
+parameters:
+  - !ruby/object:Api::Type::String
+    name: 'location'
+    required: true
+    url_param_only: true
+    description: |
+      The location for the backupplan association
+  - !ruby/object:Api::Type::String
+    name: 'backup_plan_association_id'
+    required: true
+    url_param_only: true
+    description: |-
+      The id of backupplan association
+properties:
+  - !ruby/object:Api::Type::String
+    name: 'resource'
+    description: |
+      The resource for which BPA needs to be created
+    required: true
+  - !ruby/object:Api::Type::String
+    name: 'name'
+    description: |
+      The name of backup plan association resource created
+    output: true
+  - !ruby/object:Api::Type::String
+    name: 'backupPlan'
+    description: |
+      The BP with which resource needs to be created
+    required: true
+  - !ruby/object:Api::Type::String
+    name: 'resourceType'
+    description: |
+      The resource type of workload on which backupplan is applied
+    output: true
+  - !ruby/object:Api::Type::String
+    name: 'createTime'
+    description: |
+      The time when the instance was created
+    output: true
+  - !ruby/object:Api::Type::String
+    name: 'updateTime'
+    description: |
+     The time when the instance was updated.
+    output: true
+  - !ruby/object:Api::Type::String
+    name: 'dataSource'
+    description: |
+      Resource name of data source which will be used as storage location for backups taken
+    output: true
+  - !ruby/object:Api::Type::Array
+    name: 'rulesConfigInfo'
+    description: |
+       Message for rules config info
+    item_type: !ruby/object:Api::Type::NestedObject
+      properties:
+        - !ruby/object:Api::Type::String
+          name: 'ruleId'
+          description: Backup Rule id fetched from backup plan.
+          output: true
+        - !ruby/object:Api::Type::Enum
+          name: 'lastBackupState'
+          description: State of last backup taken.
+          values:
+            - :LAST_BACKUP_STATE_UNSPECIFIED
+            - :FIRST_BACKUP_PENDING
+            - :PERMISSION_DENIED
+            - :SUCCEEDED
+            - :FAILED
+          default_value: :LAST_BACKUP_STATE_UNSPECIFIED
+        - !ruby/object:Api::Type::NestedObject
+          name: 'lastBackupError'
+          description: google.rpc.Status object to store the last backup error
+          output: true
+          properties:
+            - !ruby/object:Api::Type::String
+              name: 'code'
+              description: The status code, which should be an enum value of [google.rpc.Code]
+            - !ruby/object:Api::Type::String
+              name: 'message'
+              description: A developer-facing error message, which should be in English.
+  - !ruby/object:Api::Type::String
+    name: 'lastSuccessfulBackupConsistencyTime'
+    description: The point in time when the last successful backup was captured from the spurce
+    output: true
