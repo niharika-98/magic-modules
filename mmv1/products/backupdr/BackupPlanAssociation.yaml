@@ -46,7 +46,7 @@ examples:
       start_hour_of_day: 5
       end_hour_of_day: 20
       backup_plan_association_name: 'bpa1'
-      resource_name: 'projects/gcp-project/locations/us-central1/{instance_id}'     
+      resource_name: 'projects/gcp-project/locations/us-central1/{instance_id}'
     test_env_vars:
       project: :PROJECT_NAME
     exclude_test: true
@@ -103,7 +103,7 @@ properties:
     type: Array
     description: |
        Message for rules config info
-    item_type: 
+    item_type:
       type: NestedObject
       properties:
         - name: 'ruleId'

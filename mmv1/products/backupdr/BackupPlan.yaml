@@ -101,7 +101,7 @@ properties:
     description: |
       The backup rules for this `BackupPlan`. There must be at least one `BackupRule` message.
     required: true
-    item_type: 
+    item_type:
       type: NestedObject
       properties:
         - name: 'ruleId'
@@ -136,7 +136,7 @@ properties:
             - name: 'daysOfWeek'
               type: Array
               description: 'Specifies days of week like MONDAY or TUESDAY, on which jobs will run. This is required for `recurrence_type`, `WEEKLY` and is not applicable otherwise.'
-              item_type: 
+              item_type:
                 type: Enum
                 name: 'DayOfWeekEnum'
                 description: 'Specifies day of week'
@@ -184,7 +184,7 @@ properties:
             - name: 'months'
               type: Array
               description: 'Specifies values of months'
-              item_type: 
+              item_type:
                 type: Enum
                 name: 'MonthEnum'
                 description: 'Specifies the months of the year, like `FEBRUARY` and/or `MAY`, on which jobs will run.'
