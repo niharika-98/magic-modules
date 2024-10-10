@@ -161,25 +161,25 @@ properties:
                   type: Enum
                   description: 'WeekOfMonth enumerates possible weeks in the month, e.g. the first, third, or last week of the month.'
                   enum_values:
-                    - :WEEK_OF_MONTH_UNSPECIFIED
-                    - :FIRST
-                    - :SECOND
-                    - :THIRD
-                    - :FOURTH
-                    - :LAST
+                    - WEEK_OF_MONTH_UNSPECIFIED
+                    - FIRST
+                    - SECOND
+                    - THIRD
+                    - FOURTH
+                    - LAST
                   required: true
                 - name: 'dayOfWeek'
                   type: Enum
                   description: 'Specifies the day of the week.'
                   enum_values:
-                    - :DAY_OF_WEEK_UNSPECIFIED
-                    - :MONDAY
-                    - :TUESDAY
-                    - :WEDNESDAY
-                    - :THURSDAY
-                    - :FRIDAY
-                    - :SATURDAY
-                    - :SUNDAY
+                    - DAY_OF_WEEK_UNSPECIFIED
+                    - MONDAY
+                    - TUESDAY
+                    - WEDNESDAY
+                    - THURSDAY
+                    - FRIDAY
+                    - SATURDAY
+                    - SUNDAY
                   required: true
             - name: 'months'
               type: Array
