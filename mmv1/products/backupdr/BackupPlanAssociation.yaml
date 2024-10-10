@@ -18,7 +18,6 @@ min_version: beta
 base_url: projects/{{project}}/locations/{{location}}/backupPlanAssociations
 create_url: projects/{{project}}/locations/{{location}}/backupPlanAssociations/?backup_plan_association_id={{backup_plan_association_id}}
 self_link: projects/{{project}}/locations/{{location}}/backupPlanAssociations/{{backup_plan_association_id}}
-create_verb: :POST
 immutable: true
 delete_url: projects/{{project}}/locations/{{location}}/backupPlanAssociations/{{backup_plan_association_id}}
 description: A Backup and DR BackupPlanAssociation.
@@ -32,7 +31,7 @@ timeouts:
   delete_minutes: 20
 examples:
   - min_version: beta
-    name: 'backup_dr_backup_plan_association'
+    name: 'backup_dr_bpa'
     primary_resource_id: 'my-backup-plan'
     vars:
       project: 'my-project'
