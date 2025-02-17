@@ -14,7 +14,6 @@
 ---
 name: 'BackupVault'
 description: Container to store and organize immutable and indelible backups.
-min_version: 'beta'
 docs:
 id_format: 'projects/{{project}}/locations/{{location}}/backupVaults/{{backup_vault_id}}'
 base_url: 'projects/{{project}}/locations/{{location}}/backupVaults'
