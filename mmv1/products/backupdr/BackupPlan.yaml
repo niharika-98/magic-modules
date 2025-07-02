@@ -75,6 +75,7 @@ properties:
     description: |
       Backup vault where the backups gets stored using this Backup plan.
     required: true
+    immutable: true
     diff_suppress_func: 'tpgresource.ProjectNumberDiffSuppress'
   - name: 'backupVaultServiceAccount'
     type: String

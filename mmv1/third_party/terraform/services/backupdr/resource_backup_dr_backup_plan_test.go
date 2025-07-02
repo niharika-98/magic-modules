@@ -16,6 +16,7 @@ func TestAccBackupDRBackupPlan_fullUpdate(t *testing.T) {
 
 	context := map[string]interface{}{
 		"project":        envvar.GetTestProjectFromEnv(),
+		"effective_time": "2026-04-01T00:00:00Z",
 		"random_suffix":  acctest.RandString(t, 10),
 	}
 
@@ -193,14 +194,27 @@ resource "google_backup_dr_backup_plan" "bp" {
     backup_retention_days  = 300 # Updated retention days
 
     standard_schedule {
-      recurrence_type = "YEARLY"
-      months          = ["MARCH"] # Updated month
-      days_of_month   = [15]
+      recurrence_type = "MONTHLY" # Updated recurrence_type from YEARLY
+      days_of_month   = [1, 15]   # Updated days_of_month
+      time_zone       = "America/New_York" # Updated time_zone
+
+      backup_window {
+        start_hour_of_day = 4  # Updated start hour
+        end_hour_of_day   = 10 # Updated end hour
+      }
+    }
+    # Adding a second rule to test weekly schedule
+    rule_id                = "rule-2"
+    backup_retention_days  = 60 # Different retention for rule-2
+
+    standard_schedule {
+      recurrence_type = "WEEKLY"
+      days_of_week    = ["MONDAY", "FRIDAY"] # Added days_of_week
       time_zone       = "UTC"
 
       backup_window {
-        start_hour_of_day = 3  # Updated start hour
-        end_hour_of_day   = 9  # Updated end hour
+        start_hour_of_day = 1  # Different backup window for rule-2
+        end_hour_of_day   = 5
       }
     }
   }
