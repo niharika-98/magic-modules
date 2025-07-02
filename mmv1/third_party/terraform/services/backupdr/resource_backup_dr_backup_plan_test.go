@@ -14,12 +14,8 @@ func TestAccBackupDRBackupPlan_fullUpdate(t *testing.T) {
 
 	t.Parallel()
 
-	timeNow := time.Now().UTC()
-	referenceTime := time.Date(timeNow.Year(), timeNow.Month(), timeNow.Day(), 0, 0, 0, 0, time.UTC)
-
 	context := map[string]interface{}{
 		"project":        envvar.GetTestProjectFromEnv(),
-		"effective_time": referenceTime.Add(24 * time.Hour).Format(time.RFC3339),
 		"random_suffix":  acctest.RandString(t, 10),
 	}
 
@@ -188,22 +184,23 @@ resource "google_backup_dr_backup_vault" "my-backup-vault" {
 resource "google_backup_dr_backup_plan" "bp" {
   location       = "us-central1"
   backup_plan_id = "tf-test-bp-test-%{random_suffix}"
+  description    = "Updated description"
   resource_type  = "compute.googleapis.com/Instance"
   backup_vault   = google_backup_dr_backup_vault.my-backup-vault.name
 
   backup_rules {
     rule_id                = "rule-1"
-    backup_retention_days  = 366
+    backup_retention_days  = 300 # Updated retention days
 
     standard_schedule {
       recurrence_type = "YEARLY"
-      months          = ["FEBRUARY"]
+      months          = ["MARCH"] # Updated month
       days_of_month   = [15]
       time_zone       = "UTC"
 
       backup_window {
-        start_hour_of_day = 2  # Backup starts at 2:00 AM UTC
-        end_hour_of_day   = 8  # Optional, backup window ends at 3:00 AM
+        start_hour_of_day = 3  # Updated start hour
+        end_hour_of_day   = 9  # Updated end hour
       }
     }
   }

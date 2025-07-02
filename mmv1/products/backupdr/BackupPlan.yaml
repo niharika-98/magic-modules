@@ -95,6 +95,7 @@ properties:
       The resource type to which the `BackupPlan` will be applied.
       Examples include, "compute.googleapis.com/Instance", "compute.googleapis.com/Disk", and "storage.googleapis.com/Bucket".
     required: true
+    immutable: true
   - name: 'createTime'
     type: String
     description: |
